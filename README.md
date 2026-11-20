@@ -1,59 +1,42 @@
-# MedStream — Diabetes Prediction Pipeline 🩺📊
+# MedStream
 
-> **DEPI Graduation Project** — End-to-End Medical Data Engineering & Machine Learning Pipeline for Diabetes Prediction.
+A data engineering pipeline and machine learning project for diabetes risk prediction using patient health records.
 
-[![Python](https://img.shields.io/badge/Python-3.11-blue.svg)](https://www.python.org/)
-[![Dataset](https://img.shields.io/badge/Dataset-Diabetes_Prediction_100k-green.svg)](#)
+## Overview
+This repository contains the end-to-end workflow for processing clinical diabetes data. The pipeline cleans raw patient records, performs exploratory analysis, loads the prepared records into an embedded analytical warehouse (DuckDB), and prepares features for classification models.
 
----
+## Dataset
+We use the diabetes prediction dataset containing 100,000 patient records across 9 features:
+- `gender`: Female or Male
+- `age`: Patient age in years
+- `hypertension`: High blood pressure diagnosis (0 = no, 1 = yes)
+- `heart_disease`: Heart condition history (0 = no, 1 = yes)
+- `smoking_history`: Patient smoking status
+- `bmi`: Body Mass Index
+- `HbA1c_level`: Glycated hemoglobin test result
+- `blood_glucose_level`: Fasting blood sugar level
+- `diabetes`: Target label (0 = non-diabetic, 1 = diabetic)
 
-## 📌 Project Overview
-**MedStream** is a complete medical data pipeline designed to ingest, clean, explore, and predict diabetes risk among patients using demographic, lifestyle, and clinical indicators.
-
----
-
-## 🔬 Dataset Overview (`diabetes_prediction_dataset.csv`)
-The dataset contains **100,000 patient records** and **9 features**:
-
-| Feature | Type | Description |
-| :--- | :--- | :--- |
-| `gender` | Categorical | Female / Male |
-| `age` | Numeric | Patient age (years) |
-| `hypertension` | Binary (0/1) | 0: No high blood pressure, 1: High blood pressure |
-| `heart_disease` | Binary (0/1) | 0: No heart disease, 1: Has heart disease |
-| `smoking_history` | Categorical | never, current, former, No Info |
-| `bmi` | Numeric | Body Mass Index |
-| `HbA1c_level` | Numeric | Glycated hemoglobin level |
-| `blood_glucose_level` | Numeric | Blood glucose level (mg/dL) |
-| **`diabetes`** | **Target (0/1)** | **0: No Diabetes, 1: Diagnosed with Diabetes** |
-
----
-
-## 🗂️ Project Directory Structure
-
+## Project Structure
 ```text
 MedStream/
 ├── data/
-│   ├── raw/                  # Raw dataset (diabetes_prediction_dataset.csv)
-│   └── processed/            # Cleaned data (diabetes_cleaned.csv)
-├── notebooks/                # Exploratory & cleaning notebooks
-│   └── MedStream.ipynb       # Main interactive cleaning notebook
-├── src/                      # Source code (pipelines, models)
-├── tests/                    # Unit tests
-├── inspect_dataset.py        # Dataset verification script
-├── requirements.txt          # Python dependencies
-└── README.md                 # Project documentation
+│   ├── raw/                  # Source CSV files
+│   └── processed/            # Cleaned data ready for modeling
+├── notebooks/                # Jupyter notebooks for interactive analysis
+├── EDA.ipynb                 # Visualizations and feature distributions
+├── MedStream.ipynb           # Data cleaning and transformation pipeline
+├── data_warehouse.ipynb      # DuckDB table setup and SQL queries
+├── requirements.txt          # Required Python packages
+└── README.md
 ```
 
----
-
-## 🚀 Quick Start & How to Run
-
-### 1. Test dataset inspection:
-```bash
-py inspect_dataset.py
-```
-
-### 2. Run Data Cleaning in Notebook:
-Open `MedStream.ipynb` in VS Code and click **Run All**. The cleaned dataset will automatically be created at:
-`data/processed/diabetes_cleaned.csv`.
+## Setup & Execution
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. Run notebooks in order:
+   - `MedStream.ipynb`: Cleans raw records, drops duplicates, and exports `diabetes_cleaned.csv`.
+   - `EDA.ipynb`: Checks summary stats, class distributions, and correlation values.
+   - `data_warehouse.ipynb`: Stores cleaned records in DuckDB (`patients_analytics` table).
