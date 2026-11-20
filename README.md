@@ -3,7 +3,7 @@
 A data engineering pipeline and machine learning project for diabetes risk prediction using patient health records.
 
 ## Overview
-This repository contains the end-to-end workflow for processing clinical diabetes data. The pipeline cleans raw patient records, performs exploratory analysis, loads the prepared records into an embedded analytical warehouse (DuckDB), and trains classification models to predict diabetes risk.
+This repository contains the end-to-end workflow for processing clinical diabetes data. The pipeline cleans raw patient records, performs exploratory analysis, loads the prepared records into an embedded analytical warehouse (DuckDB), trains classification models to predict diabetes risk, and provides an interactive clinical dashboard.
 
 ## Dataset
 We use the diabetes prediction dataset containing 100,000 patient records across 9 features:
@@ -29,6 +29,7 @@ MedStream/
 ├── MedStream.ipynb           # Data cleaning and transformation pipeline
 ├── data_warehouse.ipynb      # DuckDB table setup and SQL queries
 ├── model_training.ipynb      # AI model training (Random Forest & Logistic Regression)
+├── dashboard.ipynb           # Interactive clinical dashboard & live risk predictor
 ├── requirements.txt          # Required Python packages
 └── README.md
 ```
@@ -43,3 +44,4 @@ MedStream/
    - `EDA.ipynb`: Checks summary stats, class distributions, and correlation values.
    - `data_warehouse.ipynb`: Stores cleaned records in DuckDB (`patients_analytics` table).
    - `model_training.ipynb`: Queries data from DuckDB, trains Random Forest (97.2% accuracy), and exports `models/diabetes_model.pkl`.
+   - `dashboard.ipynb`: Interactive dashboard with clinical KPI summaries and live risk inference sliders.
